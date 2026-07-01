@@ -25,6 +25,23 @@ npm run smoke
 
 The smoke test starts the MCP server, lists its tools, adds a note, and searches for it.
 
+## AI Client
+
+Create a local `.env` file:
+
+```bash
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_MODEL=openai/gpt-4.1-mini
+```
+
+Then run:
+
+```bash
+npm run ai
+```
+
+The AI client starts the MCP server, gives its tools to OpenRouter, executes requested MCP tool calls locally, and returns the final assistant answer.
+
 ## Build
 
 ```bash

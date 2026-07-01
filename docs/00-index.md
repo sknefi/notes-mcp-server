@@ -7,6 +7,7 @@ This vault tracks the tiny notes MCP server project.
 - [[mcp-basics]]
 - [[server-flow]]
 - [[tools]]
+- [[ai-client]]
 - [[resources]]
 - [[questions]]
 
