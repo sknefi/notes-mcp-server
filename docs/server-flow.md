@@ -24,22 +24,26 @@ MCP server
 ```mermaid
 sequenceDiagram
     participant User
-    participant AI as AI Client / MCP Client
+    participant Client as MCP Client
+    participant AI as OpenRouter Model
     participant Server as MCP Server
     participant Tool as Tool Handler
     participant Store as notes.json
 
-    User->>AI: Ask something
-    AI->>Server: listTools()
-    Server-->>AI: Tool names, descriptions, schemas
-    AI->>AI: Decide which tool to use
-    AI->>Server: callTool(name, arguments)
+    User->>Client: Ask something
+    Client->>Server: listTools()
+    Server-->>Client: Tool names, descriptions, schemas
+    Client->>AI: User message + tool schemas
+    AI-->>Client: Suggested tool call
+    Client->>Server: callTool(name, arguments)
     Server->>Tool: Run matching handler
     Tool->>Store: Read or write notes
     Store-->>Tool: Notes data
     Tool-->>Server: Tool result
-    Server-->>AI: MCP response
-    AI-->>User: Final answer
+    Server-->>Client: MCP response
+    Client->>AI: Tool result
+    AI-->>Client: Final answer
+    Client-->>User: Final answer
 ```
 
 ## Current Files
