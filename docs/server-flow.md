@@ -19,6 +19,29 @@ MCP server
   returns result
 ```
 
+## Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AI as AI Client / MCP Client
+    participant Server as MCP Server
+    participant Tool as Tool Handler
+    participant Store as notes.json
+
+    User->>AI: Ask something
+    AI->>Server: listTools()
+    Server-->>AI: Tool names, descriptions, schemas
+    AI->>AI: Decide which tool to use
+    AI->>Server: callTool(name, arguments)
+    Server->>Tool: Run matching handler
+    Tool->>Store: Read or write notes
+    Store-->>Tool: Notes data
+    Tool-->>Server: Tool result
+    Server-->>AI: MCP response
+    AI-->>User: Final answer
+```
+
 ## Current Files
 
 - `src/index.ts`: creates the MCP server and connects stdio transport.
