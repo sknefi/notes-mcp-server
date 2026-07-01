@@ -1,16 +1,7 @@
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { createNotesMcpClient, createNotesMcpTransport } from "./mcp.js";
 
-const transport = new StdioClientTransport({
-  command: process.execPath,
-  args: ["dist/index.js"],
-  cwd: process.cwd(),
-});
-
-const client = new Client({
-  name: "notes-mcp-smoke-test",
-  version: "1.0.0",
-});
+const transport = createNotesMcpTransport();
+const client = createNotesMcpClient("notes-mcp-smoke-test");
 
 try {
   await client.connect(transport);

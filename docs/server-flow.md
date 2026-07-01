@@ -44,14 +44,18 @@ sequenceDiagram
 
 ## Current Files
 
-- `src/index.ts`: creates the MCP server and connects stdio transport.
-- `src/tools.ts`: registers the note tools.
-- `src/notes.ts`: reads, writes, and formats notes.
-- `src/smoke-test.ts`: test client that calls the server.
+- `src/server/index.ts`: creates the MCP server and connects stdio transport.
+- `src/server/tools.ts`: registers the note tools.
+- `src/server/notes.ts`: reads, writes, and formats notes.
+- `src/client/smoke-test.ts`: test client that calls the server.
+- `src/client/ai.ts`: AI-powered client using OpenRouter.
+- `src/client/openrouter.ts`: OpenRouter request and tool mapping code.
+- `src/client/tool-runner.ts`: LLM tool-call loop.
+- `src/shared/env.ts`: tiny `.env` loader.
 
 ## Startup
 
-`src/index.ts` creates the server:
+`src/server/index.ts` creates the server:
 
 ```ts
 const server = new McpServer({

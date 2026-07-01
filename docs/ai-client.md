@@ -35,6 +35,20 @@ The model does not execute MCP tools directly.
 
 The model chooses a tool call. The client executes that call against the MCP server.
 
+## Run
+
+Interactive mode:
+
+```bash
+npm run ai
+```
+
+One-shot mode:
+
+```bash
+npm run ai -- "list my notes"
+```
+
 Related notes:
 
 - [[mcp-basics]]

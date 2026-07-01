@@ -11,7 +11,7 @@ export type Note = {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const notesFile = path.join(__dirname, "..", "data", "notes.json");
+const notesFile = path.join(__dirname, "..", "..", "data", "notes.json");
 
 export async function readNotes(): Promise<Note[]> {
   try {

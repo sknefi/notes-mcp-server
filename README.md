@@ -15,7 +15,7 @@ npm run dev
 ```
 
 MCP servers usually run over stdio, so you will normally start this from an MCP client config instead of typing into it directly.
-For an MCP client config, use `node` as the command and `dist/index.js` as the argument after running `npm run build`.
+For an MCP client config, use `node` as the command and `dist/server/index.js` as the argument after running `npm run build`.
 
 ## Verify It
 
@@ -38,6 +38,12 @@ Then run:
 
 ```bash
 npm run ai
+```
+
+Or run one prompt directly:
+
+```bash
+npm run ai -- "remember that MCP servers expose tools"
 ```
 
 The AI client starts the MCP server, gives its tools to OpenRouter, executes requested MCP tool calls locally, and returns the final assistant answer.

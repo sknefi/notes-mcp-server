@@ -35,9 +35,11 @@ search_notes(query)
 
 ## In This Project
 
-Our MCP server is the TypeScript app in `src/index.ts`.
+Our MCP server is the TypeScript app in `src/server/index.ts`.
 
-Our current MCP client is `src/smoke-test.ts`. It is not AI-powered. It manually calls tools to prove the server works.
+The smoke-test MCP client is `src/client/smoke-test.ts`. It is not AI-powered. It manually calls tools to prove the server works.
+
+The AI MCP client is `src/client/ai.ts`. It uses OpenRouter to choose tools from natural-language input.
 
 Related notes:
 
