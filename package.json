@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/server/index.js",
     "smoke": "tsc && node dist/client/smoke-test.js",
-    "ai": "tsc && node dist/client/ai.js"
+    "ai": "tsc && node dist/client/ai.js",
+    "calendar:auth": "tsc && node dist/calendar-auth.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
   "type": "module",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
+    "googleapis": "^173.0.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

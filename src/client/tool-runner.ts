@@ -30,11 +30,13 @@ export async function answerWithTools(
   tools: OpenRouterTool[],
   userInput: string,
 ): Promise<string> {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const now = new Date().toISOString();
   const messages: ChatMessage[] = [
     {
       role: "system",
       content:
-        "You are a small MCP learning client. Use the available note tools when the user asks to save, list, or search notes. After tool calls, explain the result briefly.",
+        `You are a small MCP learning client. Use available tools when the user asks to save, list, search, send Discord messages, or manage calendar events. Current datetime is ${now}. Local timezone is ${timeZone}. Calendar tool datetimes must be ISO strings with timezone offsets. After tool calls, explain the result briefly.`,
     },
     {
       role: "user",

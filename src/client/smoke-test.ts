@@ -7,10 +7,25 @@ try {
   await client.connect(transport);
 
   const tools = await client.listTools();
+  const toolNames = tools.tools.map((tool) => tool.name);
   console.log(
     "Tools:",
-    tools.tools.map((tool) => tool.name).join(", "),
+    toolNames.join(", "),
   );
+
+  const expectedTools = [
+    "add_note",
+    "list_notes",
+    "search_notes",
+    "send_discord_message",
+    "create_calendar_event",
+    "list_calendar_events",
+  ];
+  const missingTools = expectedTools.filter((toolName) => !toolNames.includes(toolName));
+
+  if (missingTools.length > 0) {
+    throw new Error(`Missing expected tools: ${missingTools.join(", ")}`);
+  }
 
   const addResult = await client.callTool({
     name: "add_note",
