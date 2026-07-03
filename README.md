@@ -1,76 +1,85 @@
-# Notes MCP Server
+# MCP Integrations Learning Project
 
-A tiny Model Context Protocol server for learning the basic idea: an AI client can call local tools exposed by your server.
+A small Model Context Protocol project for learning how an AI client can discover and call local tools. The server currently exposes local note tools plus external integrations for Discord and Google Calendar.
 
-## What It Exposes
+## What This Project Shows
 
-- `add_note(title, body)` saves a note to `data/notes.json`
-- `list_notes()` returns every saved note
-- `search_notes(query)` searches note titles and bodies
-- `send_discord_message(message)` sends a message through the configured Discord webhook
-- `create_calendar_event(title, start, end, description?, location?)` creates a Google Calendar event
-- `list_calendar_events(start, end, maxResults?)` lists Google Calendar events
+- An MCP server exposing tools over stdio
+- A scripted MCP smoke-test client
+- An OpenRouter-powered AI client that chooses MCP tools
+- Discord webhook side effects
+- Google Calendar OAuth and event tools
 
-## Run It
+## Setup
+
+Follow the full setup guide:
+
+[docs/setup.md](/Users/filip/Desktop/mcp/docs/setup.md)
+
+That guide covers `.env`, Discord webhooks, Google Calendar OAuth, and common setup issues.
+
+## MCP Tools
+
+Local notes:
+
+- `add_note(title, body)`
+- `list_notes()`
+- `search_notes(query)`
+
+Discord:
+
+- `send_discord_message(message)`
+
+Google Calendar:
+
+- `create_calendar_event(title, start, end, description?, location?)`
+- `list_calendar_events(start, end, maxResults?)`
+
+## Commands
+
+Install dependencies:
 
 ```bash
-npm run dev
+npm install
 ```
 
-MCP servers usually run over stdio, so you will normally start this from an MCP client config instead of typing into it directly.
-For an MCP client config, use `node` as the command and `dist/server/index.js` as the argument after running `npm run build`.
+Build:
 
-## Verify It
+```bash
+npm run build
+```
+
+Verify MCP tool discovery and basic note tools:
 
 ```bash
 npm run smoke
 ```
 
-The smoke test starts the MCP server, lists its tools, adds a note, and searches for it.
-
-## AI Client
-
-Create a local `.env` file:
-
-```bash
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-OPENROUTER_MODEL=openai/gpt-4.1-mini
-```
-
-Then run:
+Run the AI client:
 
 ```bash
 npm run ai
 ```
 
-Or run one prompt directly:
+Run a one-shot AI prompt:
 
 ```bash
-npm run ai -- "remember that MCP servers expose tools"
+npm run ai -- "send a Discord message saying MCP works"
 ```
 
-The AI client starts the MCP server, gives its tools to OpenRouter, executes requested MCP tool calls locally, and returns the final assistant answer.
-
-## External Integrations
-
-Discord uses `DISCORD_WEBHOOK_URL` from `.env`.
-
-Google Calendar uses OAuth credentials from `.credentials/google-oauth-client.json`. Run this once to create the token file:
+Authorize Google Calendar:
 
 ```bash
 npm run calendar:auth
 ```
 
-If your terminal cannot prompt for input, paste the returned code as an argument:
+## MCP Server Config
 
-```bash
-npm run calendar:auth -- "PASTE_CODE_HERE"
+The server runs over stdio. After building, an MCP client can start it with:
+
+```text
+command: node
+args: ["dist/server/index.js"]
 ```
 
-Then the AI client can create or list calendar events through MCP tools.
-
-## Build
-
-```bash
-npm run build
-```
+The local AI client already does this automatically.
