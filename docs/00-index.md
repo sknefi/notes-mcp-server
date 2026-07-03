@@ -4,6 +4,7 @@ This vault tracks the tiny notes MCP server project.
 
 ## Project Notes
 
+- [[setup]]
 - [[mcp-basics]]
 - [[server-flow]]
 - [[tools]]
