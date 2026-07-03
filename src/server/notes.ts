@@ -16,6 +16,10 @@ const notesFile = path.join(__dirname, "..", "..", "data", "notes.json");
 export async function readNotes(): Promise<Note[]> {
   try {
     const raw = await readFile(notesFile, "utf8");
+    if (raw.trim().length === 0) {
+      return [];
+    }
+
     return JSON.parse(raw) as Note[];
   } catch (error) {
     if (error instanceof Error && "code" in error && error.code === "ENOENT") {

@@ -59,10 +59,15 @@ export async function answerWithTools(
     for (const toolCall of toolCalls) {
       const toolName = toolCall.function.name;
       const toolArguments = parseToolArguments(toolCall.function.arguments);
+      console.error("\nMCP tool call:");
+      console.error(JSON.stringify({ name: toolName, arguments: toolArguments }, null, 2));
+
       const result = await mcpClient.callTool({
         name: toolName,
         arguments: toolArguments,
       });
+      console.error("\nMCP tool result:");
+      console.error(JSON.stringify(result, null, 2));
 
       messages.push({
         role: "tool",

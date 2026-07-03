@@ -97,5 +97,8 @@ export async function callOpenRouter(
     throw new Error("OpenRouter returned no assistant message.");
   }
 
+  console.error("\nOpenRouter assistant message:");
+  console.error(JSON.stringify(message, null, 2));
+
   return message;
 }
