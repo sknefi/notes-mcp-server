@@ -2,6 +2,10 @@
 
 A small Model Context Protocol project for learning how an AI client can discover and call local tools. The server currently exposes local note tools plus external integrations for Discord and Google Calendar.
 
+## Architecture Sketch
+
+![Hand-drawn MCP architecture sketch](docs/photo.png)
+
 ## What This Project Shows
 
 - An MCP server exposing tools over stdio
